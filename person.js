@@ -10,3 +10,4 @@ console.log(me.age);
 
 const friend = new Person('Jen', 'Grand', 29)
 console.log(friend);
+
