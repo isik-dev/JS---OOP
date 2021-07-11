@@ -1,4 +1,5 @@
-// Prototypal Inheritance
+// Prototypal Inheritance. 
+// myPerson --> Person.prototype --> Objec.prototype --> null
 // Object: myObject --> myObject.prototype --> null
 
 class Person {
@@ -23,37 +24,47 @@ class Person {
     }
 }
 
-class Employee extends Person {
-    constructor(firstName, lastName, age, position, likes) {
-        super(firstName, lastName, age, likes)
-        this.position = position
-    }
-    getBio() {
-        return `${this.firstName} ${this.lastName} is a ${this.position}`
-    }
-    getYearsLeft() {
-        return 65 - this.age
-    }
-}
+// Creating subclasses
+// extends
+// super
+
+// class Student extends Person {
+//     constructor(firstName, lastName, age, major, likes) {
+//         super(firstName, lastName, age, likes)
+//         this.major = major
+//     }
+//     getBio () {
+//         return `${this.firstName} is a ${this.major} student.`
+//     }
+//     yearsSinceGraduated() {
+//         return `${this.firstName} has graduated ${this.age - 23} years ago.`
+//     }
+
+// }
+
+
+// Challenge time
 
 class Student extends Person {
-    constructor(firstName, lastName, age, likes, grades=0) {
+    constructor(firstName, lastName, age, major, likes, grade) {
         super(firstName, lastName, age, likes)
-        this.grades = grades
+        this.major = major
+        this.grade = grade
     }
     getBio() {
-        const status = this.grades >= 70 ? 'passing' : 'failing'
-        return `${this.firstName} is ${status} the class.` 
+        return this.grade >= 70 ? `${this.firstName} is passing the course.` : `${this.firstName} is failing the course.`
+        // if (this.grade >= 70) {
+        //     return `${this.firstName} is passing the course.`
+        // } else {
+        //     return `${this.firstName} is failing the course.`
+        // }
     }
     updateGrade(amount) {
-        this.grades += amount
+        return this.grade += amount
     }
 }
 
-
-const me = new Student('Jeremy', 'Powell', 28, ['Cycling'], 10)
-console.log(me);
+const me = new Student('David', 'Numanov', 24, 'CS', ['Horse Riding'], 71)
 console.log(me.getBio());
-me.updateGrade(70)
+console.log(me.updateGrade(-50)); 
 console.log(me.getBio());
-console.log(me.grades);
